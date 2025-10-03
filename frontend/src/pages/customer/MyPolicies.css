@@ -1,0 +1,48 @@
+.my-policies-page {
+  padding: 2rem 0;
+  min-height: calc(100vh - 400px);
+}
+
+.policies-filter {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  padding: 1.5rem;
+  background-color: white;
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--gray-200);
+  box-shadow: var(--shadow-sm);
+}
+
+.filter-label {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--gray-700);
+}
+
+.policies-filter .form-select {
+  max-width: 250px;
+}
+
+.policies-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(450px, 1fr));
+  gap: 2rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .policies-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .policies-filter {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .policies-filter .form-select {
+    max-width: 100%;
+  }
+}

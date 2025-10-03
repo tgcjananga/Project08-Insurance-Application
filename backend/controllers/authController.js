@@ -138,7 +138,6 @@ const login = async (req, res) => {
 // @access  Private
 const getProfile = async (req, res) => {
   try {
-    // req.user is set by protect middleware
     const user = await User.findById(req.user._id);
 
     if (!user) {
@@ -182,7 +181,7 @@ const updateProfile = async (req, res) => {
 
     // Update password if provided
     if (req.body.password) {
-      user.password = req.body.password; // Will be hashed by pre-save hook
+      user.password = req.body.password; 
     }
 
     const updatedUser = await user.save();

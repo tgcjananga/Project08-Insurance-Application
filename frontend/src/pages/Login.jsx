@@ -62,21 +62,6 @@ const Login = () => {
                 <span>Track Status</span>
               </div>
             </div>
-
-            {/* Demo Credentials */}
-            <div className="demo-credentials">
-              <h4>Demo Credentials:</h4>
-              <div className="demo-item">
-                <strong>Customer:</strong>
-                <div>Email: customer@example.com</div>
-                <div>Password: password123</div>
-              </div>
-              <div className="demo-item">
-                <strong>Admin:</strong>
-                <div>Email: admin@ceylinco.com</div>
-                <div>Password: admin123</div>
-              </div>
-            </div>
           </div>
 
           {/* Right Side - Form */}

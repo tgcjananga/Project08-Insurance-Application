@@ -445,7 +445,6 @@ const getRevenueStatistics = async (req, res) => {
 
     const totalCoverage = totalCoverageData.length > 0 ? totalCoverageData[0].totalCoverage : 0;
 
-    // Claims payout
     const claimsPayout = await Claim.aggregate([
       { $match: { status: { $in: ['APPROVED', 'PAID'] } } },
       {

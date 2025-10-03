@@ -51,4 +51,20 @@ router.put('/:id/approve', protect, adminOnly, approveClaim);
 router.put('/:id/reject', protect, adminOnly, rejectClaim);
 router.put('/:id/pay', protect, adminOnly, markClaimAsPaid);
 
+
+// Add this at the end, before module.exports
+router.get('/debug/:id', protect, async (req, res) => {
+  try {
+    const claim = await Claim.findById(req.params.id);
+    res.json({
+      success: true,
+      data: claim,
+      documentsCount: claim.documents?.length || 0,
+      documents: claim.documents
+    });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
 module.exports = router;

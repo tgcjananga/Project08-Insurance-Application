@@ -49,14 +49,40 @@ const fileClaim = async (req, res) => {
       });
     }
 
-    // Handle uploaded files
+
     let documents = [];
-    if (req.files && req.files.length > 0) {
-      documents = req.files.map(file => ({
-        type: file.fieldname, // Will be 'NIC', 'death_certificate', etc.
-        url: file.path, // Cloudinary URL
-        uploadedAt: new Date(),
-      }));
+    
+    // console.log('req.files:', req.files); // Debug log
+    // console.log('req.files type:', typeof req.files); // Debug log
+    // console.log('req.files keys:', req.files ? Object.keys(req.files) : 'none'); // Debug log
+    
+    if (req.files) {
+      for (const fieldName in req.files) {
+        const filesArray = req.files[fieldName]; 
+        
+        if (Array.isArray(filesArray)) {
+          filesArray.forEach((file) => {
+            // console.log(`Processing file - Field: ${fieldName}, Path: ${file.path}`); // Debug
+            documents.push({
+              type: fieldName,
+              url: file.path, // Cloudinary URL
+              uploadedAt: new Date(),
+            });
+          });
+        }
+      }
+    }
+    
+    // console.log('Final documents array:', documents); // Debug log
+    // console.log('Documents count:', documents.length); // Debug log
+
+    // Validate that at least NIC is uploaded
+    const hasNIC = documents.some(doc => doc.type === 'NIC');
+    if (!hasNIC) {
+      return res.status(400).json({
+        success: false,
+        message: 'NIC document is required',
+      });
     }
 
     // Create claim
@@ -68,8 +94,10 @@ const fileClaim = async (req, res) => {
       claimAmount,
       reason,
       status: 'FILED',
-      documents,
+      documents: documents, 
     });
+
+    console.log('Created claim with documents:', claim.documents); // Debug log
 
     res.status(201).json({
       success: true,
@@ -115,23 +143,37 @@ const uploadClaimDocuments = async (req, res) => {
       });
     }
 
-    // Handle uploaded files
-    if (!req.files || req.files.length === 0) {
+    // Handle uploaded files - CORRECTED VERSION
+    if (!req.files || Object.keys(req.files).length === 0) {
       return res.status(400).json({
         success: false,
         message: 'No files uploaded',
       });
     }
 
-    const newDocuments = req.files.map(file => ({
-      type: file.fieldname,
-      url: file.path,
-      uploadedAt: new Date(),
-    }));
+    const newDocuments = [];
+    
+    for (const fieldName in req.files) {
+      const filesArray = req.files[fieldName];
+      
+      if (Array.isArray(filesArray)) {
+        filesArray.forEach((file) => {
+          newDocuments.push({
+            type: fieldName,
+            url: file.path,
+            uploadedAt: new Date(),
+          });
+        });
+      }
+    }
+
+    console.log('New documents to add:', newDocuments); // Debug log
 
     // Add to existing documents
     claim.documents.push(...newDocuments);
     await claim.save();
+
+    console.log('Claim after adding documents:', claim.documents); // Debug log
 
     res.status(200).json({
       success: true,
@@ -146,7 +188,6 @@ const uploadClaimDocuments = async (req, res) => {
     });
   }
 };
-
 // @desc    Get all claims for logged-in user
 // @route   GET /api/claims/my-claims
 // @access  Private (Customer)

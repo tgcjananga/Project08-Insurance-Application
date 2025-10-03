@@ -1,0 +1,161 @@
+.request-policy-page {
+  padding: 2rem 0;
+  min-height: calc(100vh - 400px);
+}
+
+.request-policy-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 2rem;
+}
+
+.policy-form-section {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.plan-info-card {
+  background-color: white;
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--gray-200);
+  padding: 2rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.plan-info-title {
+  font-size: 1.5rem;
+  color: var(--gray-900);
+  margin-bottom: 0.5rem;
+}
+
+.plan-info-type {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  background-color: var(--primary-100);
+  color: var(--primary-700);
+  font-size: 0.75rem;
+  font-weight: 600;
+  border-radius: var(--radius-md);
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+
+.plan-info-description {
+  font-size: 0.875rem;
+  color: var(--gray-600);
+  line-height: 1.6;
+  margin-top: 1rem;
+}
+
+.policy-request-form {
+  background-color: white;
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--gray-200);
+  padding: 2rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.input-hint {
+  font-size: 0.75rem;
+  color: var(--gray-500);
+  margin-top: 0.25rem;
+}
+
+.beneficiaries-form-section {
+  margin-top: 2rem;
+  padding-top: 2rem;
+  border-top: 2px solid var(--gray-200);
+}
+
+.section-header-with-button {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.form-section-title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--gray-900);
+}
+
+.beneficiary-form-card {
+  background-color: var(--gray-50);
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.beneficiary-form-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--gray-200);
+}
+
+.beneficiary-form-header h4 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--gray-900);
+}
+
+.btn-remove {
+  background-color: transparent;
+  border: none;
+  color: var(--error-600);
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 0.25rem 0.5rem;
+  transition: var(--transition);
+}
+
+.btn-remove:hover {
+  color: var(--error-700);
+  background-color: var(--error-50);
+  border-radius: var(--radius-sm);
+}
+
+.beneficiary-form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+.form-actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 2rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--gray-200);
+}
+
+.form-actions button {
+  flex: 1;
+}
+
+.calculator-section {
+  position: sticky;
+  top: 100px;
+  height: fit-content;
+}
+
+/* Responsive */
+@media (max-width: 968px) {
+  .request-policy-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .calculator-section {
+    position: static;
+  }
+
+  .beneficiary-form-grid {
+    grid-template-columns: 1fr;
+  }
+}

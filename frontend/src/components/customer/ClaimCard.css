@@ -1,0 +1,31 @@
+.claim-card-component {
+  background-color: white;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--gray-200);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+  transition: var(--transition);
+}
+
+.claim-card-component:hover {
+  box-shadow: var(--shadow-md);
+}
+
+.claim-card-component .claim-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background-color: var(--gray-50);
+  border-bottom: 1px solid var(--gray-200);
+}
+
+.claim-card-component .claim-card-body {
+  padding: 1rem;
+}
+
+.claim-info-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}

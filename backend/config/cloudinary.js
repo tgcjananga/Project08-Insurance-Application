@@ -9,21 +9,19 @@ cloudinary.config({
   api_secret: process.env.CLOUDINARY_API_SECRET,
 });
 
-// Configure Cloudinary Storage for Multer
 const storage = new CloudinaryStorage({
   cloudinary: cloudinary,
   params: {
-    folder: 'insurance_platform', // Folder name in Cloudinary
+    folder: 'insurance_platform', 
     allowed_formats: ['jpg', 'jpeg', 'png', 'pdf', 'doc', 'docx'],
-    resource_type: 'auto', // Automatically detect file type
+    resource_type: 'auto', 
   },
 });
 
-// Create multer upload middleware
 const upload = multer({ 
   storage: storage,
   limits: {
-    fileSize: 5 * 1024 * 1024, // 5MB limit
+    fileSize: 5 * 1024 * 1024, //5MB limit
   },
 });
 
