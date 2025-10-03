@@ -38,9 +38,9 @@ app.get('/', (req, res) => {
 // Routes
 app.use('/api/auth', require('./routes/auth'));
 app.use('/api/plans', require('./routes/plans'));
-// app.use('/api/policies', require('./routes/policies'));
-// app.use('/api/claims', require('./routes/claims'));
-// app.use('/api/admin', require('./routes/admin'));
+app.use('/api/policies', require('./routes/policies'));
+app.use('/api/claims', require('./routes/claims'));
+app.use('/api/admin', require('./routes/admin'));
 
 // 404 handler
 app.use((req, res) => {
